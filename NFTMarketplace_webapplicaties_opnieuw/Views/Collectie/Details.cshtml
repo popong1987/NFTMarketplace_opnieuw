@@ -1,0 +1,43 @@
+﻿@model NFTMarketplace_webapplicaties_opnieuw.Viewmodels.CollectieDetailsViewModel
+@{
+    ViewData["Title"] = @Model.Naam;
+}
+
+<style>
+    .jumbotron {
+        background-image: url("@Model.Afbeelding");
+        background-color: black;
+        height: 40vh;
+        width: auto;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+</style>
+
+<div class="jumbotron jumbotron-fluid">
+</div>
+
+<div class="m-5">
+    <h1 class="text-primary text-uppercase"> @Model.Naam</h1>
+    <p class="text-primary">@Model.Beschrijving</p>
+</div>
+
+<div class="row">
+    @foreach (var product in Model.Producten)
+    {
+        <div class="col-md-3 bg-dark">
+            <div class="card m-2 bg-dark">
+                <img src="@product.Afbeelding" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase text-primary">@product.Naam</h5>
+                    <p class="card-text text-primary">@product.Beschrijving</p>
+                    <p class="card-text text-primary">price: €@product.Prijs</p>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary" asp-controller="Product" asp-action="Details" asp-route-id="@product.ProductId">Details</a>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
