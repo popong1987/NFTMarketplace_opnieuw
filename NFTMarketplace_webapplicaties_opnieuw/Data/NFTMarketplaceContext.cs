@@ -2,10 +2,13 @@
 using NFTMarketplace_webapplicaties_opnieuw.Models;
 using System.Collections.Generic;
 using System.Reflection.Emit;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using NFTMarketplace_webapplicaties_opnieuw.Areas.Identity.Data;
 
 namespace NFTMarketplace_webapplicaties_opnieuw.Data
 {
-    public class NFTMarketplaceContext: DbContext
+    public class NFTMarketplaceContext: IdentityDbContext<Gebruiker>
     {
         public NFTMarketplaceContext(DbContextOptions<NFTMarketplaceContext> options) : base(options) 
         {
@@ -39,7 +42,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Data
             modelBuilder.Entity<Product>().ToTable("Product").Property(p => p.Prijs).HasColumnType("decimal(18,2)");
             modelBuilder.Entity<ProductProperty>().ToTable("ProductProperty");
             modelBuilder.Entity<Property>().ToTable("Property");
-            /*modelBuilder.Entity<Gebruiker>().ToTable("Gebruiker");*/
+            modelBuilder.Entity<Gebruiker>().ToTable("Gebruiker");
 
             modelBuilder.Entity<CollectieCategorie>()
                 .HasOne(p => p.Collectie)

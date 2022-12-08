@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NFTMarketplace_webapplicaties_opnieuw.Areas.Identity.Data;
 using NFTMarketplace_webapplicaties_opnieuw.Data;
 using NFTMarketplace_webapplicaties_opnieuw.Data.Repositories;
 using NFTMarketplace_webapplicaties_opnieuw.Data.UnitOfWork;
@@ -30,6 +32,14 @@ namespace NFTMarketplace_webapplicaties_opnieuw
         {
             services.AddControllersWithViews();
             services.AddDbContext<NFTMarketplaceContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalDBConnection")));
+            services.AddDefaultIdentity<Gebruiker>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<NFTMarketplaceContext>();
+            services.AddRazorPages();
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireUppercase = true;
+            });
             services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -53,6 +63,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
