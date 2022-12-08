@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace NFTMarketplace_webapplicaties_opnieuw.Data.UnitOfWork
 {
-    public class UnitOfWork
+    public class UnitOfWork: IUnitOfWork
     {
         private readonly NFTMarketplaceContext _context;
         private IGenericRepository<Product> _productRepository;
