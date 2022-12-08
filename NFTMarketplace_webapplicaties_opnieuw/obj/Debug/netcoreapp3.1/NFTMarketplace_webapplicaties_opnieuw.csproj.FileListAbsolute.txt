@@ -204,3 +204,6 @@ D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplic
 D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\obj\Debug\netcoreapp3.1\Razor\Views\Order\Index.cshtml.g.cs
+D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\obj\Debug\netcoreapp3.1\Razor\Views\Admin\CreateProduct.cshtml.g.cs
+D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs

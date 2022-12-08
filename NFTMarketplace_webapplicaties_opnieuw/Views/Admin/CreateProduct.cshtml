@@ -1,0 +1,70 @@
+﻿@model NFTMarketplace_webapplicaties_opnieuw.Viewmodels.CreateProductViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="m-5">
+    <div class="mt-5">
+        <h3 class="text-primary m-5">Create new NFT</h3>
+    </div>
+    <form asp-action="CreateProduct">
+        <div class="row">
+            <div class="col d-flex align-items-center justify-content-center">
+
+                @*<div class="form-group text-primary">
+                    <label for="exampleFormControlFile1">Upload image</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                </div>*@
+                <div class="form-group">
+                    <label class="text-primary">Image</label>
+                    <input asp-for="Afbeelding" class="form-control" />
+                    <span asp-validation-for="Afbeelding" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label class="text-primary">Name</label>
+                    <input asp-for="Naam" class="form-control" />
+                    <span asp-validation-for="Naam" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="text-primary">Description</label>
+                    <input asp-for="Beschrijving" class="form-control" />
+                    <span asp-validation-for="Beschrijving" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="text-primary"># available</label>
+                    <input asp-for="AantalBeschikbaar" type="text" class="form-control" id="InputNaam">
+                    <span asp-validation-for="AantalBeschikbaar" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label class="text-primary">Price</label>
+                    <input asp-for="Prijs" class="form-control" id="InputNaam">
+                    <span asp-validation-for="Prijs" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="text-primary">Creation Date</label>
+                    <input asp-for="AanmaakDatum" class="form-control" id="InputNaam">
+                    <span asp-validation-for="AanmaakDatum" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="text-primary">Collection Id</label>
+                    <input asp-for="CollectieId" class="form-control" id="InputNaam">
+                    <span asp-validation-for="CollectieId" class="text-danger"></span>
+                    @*<select asp-for="CollectieId" asp-items="@(new SelectList(Model.Collecties))">
+                        <option selected>Choose...</option>
+                    </select>*@
+                </div>
+                <button type="submit" value="Create" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
