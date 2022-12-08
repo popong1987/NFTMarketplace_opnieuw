@@ -76,3 +76,5 @@ D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplic
 D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\obj\Debug\netcoreapp3.1\Razor\Views\Collectie\Details.cshtml.g.cs
 D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\obj\Debug\netcoreapp3.1\Razor\Views\Collectie\Index.cshtml.g.cs
+D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\obj\Debug\netcoreapp3.1\Razor\Views\Product\Details.cshtml.g.cs
+D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\obj\Debug\netcoreapp3.1\Razor\Views\Product\Index.cshtml.g.cs
