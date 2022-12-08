@@ -5,7 +5,7 @@
         public int OrderProductId { get; set; }
         public int Aantal { get; set; }
         public decimal Prijs { get; set; }
-        public string OrderId { get; set; }
+        public int OrderId { get; set; }
         public int ProductId { get; set; }
 
         //navigation properties

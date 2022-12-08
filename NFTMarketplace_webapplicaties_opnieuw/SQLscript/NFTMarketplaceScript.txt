@@ -1,4 +1,4 @@
-USE [NFTMarketplace]
+USE [NFTMarketplaceOpnieuw]
 GO
 
 SET IDENTITY_INSERT [dbo].[Collectie] ON

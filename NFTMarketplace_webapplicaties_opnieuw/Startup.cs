@@ -6,7 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NFTMarketplace_webapplicaties_opnieuw.Data;
+using NFTMarketplace_webapplicaties_opnieuw.Data.Repositories;
 using NFTMarketplace_webapplicaties_opnieuw.Data.UnitOfWork;
+using NFTMarketplace_webapplicaties_opnieuw.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +30,9 @@ namespace NFTMarketplace_webapplicaties_opnieuw
         {
             services.AddControllersWithViews();
             services.AddDbContext<NFTMarketplaceContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalDBConnection")));
-            
+            services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
