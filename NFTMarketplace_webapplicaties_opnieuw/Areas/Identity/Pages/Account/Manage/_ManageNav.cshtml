@@ -1,4 +1,5 @@
-﻿@inject SignInManager<IdentityUser> SignInManager
+﻿@using NFTMarketplace_webapplicaties_opnieuw.Areas.Identity.Data
+@inject SignInManager<Gebruiker> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }

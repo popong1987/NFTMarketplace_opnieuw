@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NFTMarketplace_webapplicaties_opnieuw.Areas.Identity.Data;
 
 namespace NFTMarketplace_webapplicaties_opnieuw.Areas.Identity.Pages.Account.Manage
 {
