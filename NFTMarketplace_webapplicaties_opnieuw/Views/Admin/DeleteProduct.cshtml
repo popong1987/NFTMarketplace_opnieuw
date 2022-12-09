@@ -1,0 +1,49 @@
+﻿@model NFTMarketplace_webapplicaties_opnieuw.Viewmodels.DeleteProductViewModel;
+@{
+    ViewData["Title"] = @Model.Naam;
+}
+
+<h1 class="mt-5">Bent u zeker dat u '@ViewData["Title"]' wil verwijderen?</h1>
+
+<table class="table table-bordered table-striped mt-5">
+    <tr>
+        <td>@Html.DisplayNameFor(model => this.Model.ProductId)</td>
+        <td>@this.Model.ProductId</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => this.Model.Naam)</td>
+        <td>@this.Model.Naam</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => this.Model.Prijs)</td>
+        <td>@this.Model.Prijs</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => this.Model.Afbeelding)</td>
+        <td>@this.Model.Afbeelding</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => this.Model.Beschrijving)</td>
+        <td>@this.Model.Beschrijving</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => this.Model.AanmaakDatum)</td>
+        <td>@this.Model.AanmaakDatum</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => this.Model.AantalBeschikbaar)</td>
+        <td>@this.Model.AantalBeschikbaar</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(model => this.Model.CollectieId)</td>
+        <td>@this.Model.CollectieId</td>
+    </tr>
+</table>
+
+
+<form class="mt-5" asp-action="DeleteProduct">
+    <div class="form-group">
+        <input type="submit" value="Delete" class="btn btn-primary" />
+        <a asp-action="Producten" class="btn btn-primary">Back</a>
+    </div>
+</form>
