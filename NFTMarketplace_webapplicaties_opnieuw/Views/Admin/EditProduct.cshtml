@@ -1,0 +1,67 @@
+﻿@model NFTMarketplace_webapplicaties_opnieuw.Viewmodels.EditProductViewModel
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<h1 class="mt-5">@ViewData["Title"]</h1>
+
+<form asp-action="EditProduct">
+    <input type="hidden" asp-for="ProductId" />
+    <div class="row mt-5">
+        <div asp-validation-summary="ModelOnly" class="text-danger" />
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Naam" class="control-label">@Html.DisplayNameFor(model => this.Model.Naam)</label>
+                <input asp-for="Naam" class="form-control" />
+                <span asp-validation-for="Naam" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prijs" class="control-label">@Html.DisplayNameFor(model => this.Model.Prijs)</label>
+                <input asp-for="Prijs" class="form-control" />
+                <span asp-validation-for="Prijs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Afbeelding" class="control-label">@Html.DisplayNameFor(model => this.Model.Afbeelding)</label>
+                <input asp-for="Afbeelding" class="form-control" />
+                <span asp-validation-for="Afbeelding" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Beschrijving" class="control-label">@Html.DisplayNameFor(model => this.Model.Beschrijving)</label>
+                <input asp-for="Beschrijving" class="form-control" />
+                <span asp-validation-for="Beschrijving" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AanmaakDatum" class="control-label">@Html.DisplayNameFor(model => this.Model.AanmaakDatum)</label>
+                <input asp-for="AanmaakDatum" class="form-check" />
+                <span asp-validation-for="AanmaakDatum" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="AantalBeschikbaar" class="control-label">@Html.DisplayNameFor(model => this.Model.AantalBeschikbaar)</label>
+                <input asp-for="AantalBeschikbaar" class="form-control" rows="5"></input>
+                <span asp-validation-for="AantalBeschikbaar" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CollectieId" class="control-label">@Html.DisplayNameFor(model => this.Model.CollectieId)</label>
+                <input asp-for="CollectieId" class="form-control" />
+                <span asp-validation-for="CollectieId" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="Prijs" class="control-label">@Html.DisplayNameFor(model => this.Model.Prijs)</label>
+                <input asp-for="Prijs" class="form-control" />
+                <span asp-validation-for="Prijs" class="text-danger"></span>
+            </div>*@
+        </div>
+        <div class="form-group ml-2">
+            <input type="submit" value="Edit" class="btn btn-primary" />
+            <a asp-action="Producten" class="btn btn-primary">Back</a>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
