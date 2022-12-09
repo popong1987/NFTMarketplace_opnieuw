@@ -28,6 +28,15 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
             return View(vm);
         }
 
+        public async Task<ActionResult<IEnumerable<Product>>> Producten()
+        {
+            ProductListViewModel vm = new ProductListViewModel()
+            {
+                Producten = await _uow.ProductRepository.GetAll().ToListAsync()
+            };
+            return View(vm);
+        }
+
 
         public async Task<ActionResult<IEnumerable<Product>>> CreateProduct()
         {
@@ -60,7 +69,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
 
                 });
                 await _uow.Save();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Producten));
             }
             return View(vm);
         }
