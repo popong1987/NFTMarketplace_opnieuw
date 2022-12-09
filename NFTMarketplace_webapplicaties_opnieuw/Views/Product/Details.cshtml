@@ -18,7 +18,7 @@
                 <p class="text-primary">€ @Model.Prijs</p>
             </div>
             <div class="col-md">
-                <form asp-controller="ShoppingCart" asp-action="AddToShoppingCart">
+                <form asp-controller="Order" asp-action="Index">
                     <input type="hidden" asp-for="ProductId" />
                     <input type="submit" value="AddToCart" class="btn btn-primary" />
                 </form>

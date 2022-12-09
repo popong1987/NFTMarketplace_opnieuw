@@ -63,13 +63,6 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
             }
         }
 
-        public async Task<ActionResult<IEnumerable<Product>>> Create()
-        {
-            CreateProductViewModel vm = new CreateProductViewModel()
-            {
-                Collecties = await _uow.CollectieRepository.GetAll().ToListAsync()
-            };
-            return View(vm);
-        }
+        
     }
 }

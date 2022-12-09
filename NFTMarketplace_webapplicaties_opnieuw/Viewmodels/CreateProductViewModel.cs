@@ -13,7 +13,6 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Viewmodels
         public DateTime AanmaakDatum { get; set; }
         public int AantalBeschikbaar { get; set; }
         public int CollectieId { get; set; }
-
-        public List<Collectie> Collecties { get; set; }
+        
     }
 }

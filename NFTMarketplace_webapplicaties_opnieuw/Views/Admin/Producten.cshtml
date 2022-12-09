@@ -1,0 +1,34 @@
+﻿@model NFTMarketplace_webapplicaties_opnieuw.Viewmodels.ProductListViewModel;
+@{
+    ViewData["Title"] = "Admin - Producten";
+}
+
+<h1 class="mt-5">@ViewData["Title"]</h1>
+
+<form class="mt-5" asp-action="CreateProduct" method="get">
+    <div class="form-group">
+        <input type="submit" value="Nieuw product" class="btn btn-primary" />
+    </div>
+</form>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Producten[0].ProductId)</th>
+        <th>@Html.DisplayNameFor(model => model.Producten[0].Naam)</th>
+        <th>@Html.DisplayNameFor(model => model.Producten[0].Prijs)</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (var product in Model.Producten)
+    {
+        <tr>
+            <td>@product.ProductId</td>
+            <td>@product.Naam</td>
+            <td>@product.Prijs</td>
+            <td><a class="button" asp-controller="Product" asp-action="Details" asp-route-id="@product.ProductId">Details</a></td>
+            <td><a class="button" asp-action="EditProduct" asp-route-id="@product.ProductId">Edit</a></td>
+            <td><a class="button" asp-action="DeleteProduct" asp-route-id="@product.ProductId">Delete</a></td>
+        </tr>
+    }
+</table>
