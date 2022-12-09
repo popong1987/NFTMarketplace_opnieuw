@@ -2,7 +2,7 @@
 
 namespace NFTMarketplace_webapplicaties_opnieuw.Viewmodels
 {
-    public class DeleteProductViewModel
+    public class EditProductViewModel
     {
         public int ProductId { get; set; }
         public string Naam { get; set; }

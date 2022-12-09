@@ -6,6 +6,7 @@ using NFTMarketplace_webapplicaties_opnieuw.Models;
 using NFTMarketplace_webapplicaties_opnieuw.Viewmodels;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
@@ -53,7 +54,6 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
         public async Task<ActionResult> CreateProduct(CreateProductViewModel vm)
         {
 
-
             if (ModelState.IsValid)
             {
                 _uow.ProductRepository.Create(new Product()
@@ -72,6 +72,45 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
                 return RedirectToAction(nameof(Producten));
             }
             return View(vm);
+        }
+
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            Product product = await _uow.ProductRepository.GetById(id);
+            if(product != null)
+            {
+                DeleteProductViewModel vm = new DeleteProductViewModel()
+                {
+                    ProductId = id,
+                    Naam = product.Naam,
+                    Prijs = product.Prijs,
+                    Afbeelding = product.Afbeelding,
+                    Beschrijving = product.Beschrijving,
+                    AanmaakDatum = product.AanmaakDatum,
+                    AantalBeschikbaar = product.AantalBeschikbaar,
+                    CollectieId = product.CollectieId
+                };
+
+                return View(vm);
+            }
+            else
+            {
+                ProductListViewModel vm = new ProductListViewModel()
+                {
+                    Producten = await _uow.ProductRepository.GetAll().ToListAsync()
+                };
+                return RedirectToAction(nameof(Producten));
+            }
+        }
+
+        [HttpPost, ActionName("DeleteProduct")]
+
+        public async Task<IActionResult> DeleteProductConfirm(int id)
+        {
+            Product product = await _uow.ProductRepository.GetById(id);
+            _uow.ProductRepository.Delete(product);
+            await _uow.Save();
+            return RedirectToAction(nameof(Producten));
         }
 
 
