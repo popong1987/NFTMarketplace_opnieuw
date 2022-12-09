@@ -39,12 +39,8 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
         }
 
 
-        public async Task<ActionResult<IEnumerable<Product>>> CreateProduct()
+        public async Task<ActionResult> CreateProduct()
         {
-            /*CreateProductViewModel vm = new CreateProductViewModel()
-            {
-                Collecties = await _uow.CollectieRepository.GetAll().ToListAsync()
-            };*/
             return View();
         }
 
@@ -113,6 +109,64 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
             return RedirectToAction(nameof(Producten));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> EditProduct(int id)
+        {
+            Product product = await _uow.ProductRepository.GetById(id);
 
+            if(product == null)
+            {
+                return NotFound();
+            }
+
+            EditProductViewModel vm = new EditProductViewModel()
+            {
+                ProductId = product.ProductId,
+                Naam = product.Naam,
+                Prijs = product.Prijs,
+                Afbeelding = product.Afbeelding,
+                Beschrijving = product.Beschrijving,
+                AanmaakDatum = product.AanmaakDatum,
+                AantalBeschikbaar = product.AantalBeschikbaar,
+                CollectieId = product.CollectieId
+            };
+            return View(vm);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> EditProduct(int id, EditProductViewModel vm)
+        {
+            if(id != vm.ProductId)
+            {
+                return NotFound();
+            }
+
+            Product product = await _uow.ProductRepository.GetById(id);
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    product.ProductId = vm.ProductId;
+                    product.Naam = vm.Naam;
+                    product.Prijs = vm.Prijs;
+                    product.Afbeelding = vm.Afbeelding;
+                    product.Beschrijving = vm.Beschrijving;
+                    product.AantalBeschikbaar = vm.AantalBeschikbaar;
+                    product.CollectieId = vm.CollectieId;
+
+                    _uow.ProductRepository.Update(product);
+                    await _uow.Save();
+                }
+                catch(DbUpdateConcurrencyException e)
+                {
+                    /*if(!_uow.ProductRepository.*/
+                    throw;
+                }
+                return RedirectToAction(nameof(Producten));
+            }
+            return View(vm);
+        }
     }
 }
