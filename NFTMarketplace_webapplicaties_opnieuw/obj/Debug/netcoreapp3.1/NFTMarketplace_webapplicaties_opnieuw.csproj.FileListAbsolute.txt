@@ -216,3 +216,4 @@ D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplic
 D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\obj\Debug\netcoreapp3.1\Razor\Views\Gebruiker\GrantPermissions.cshtml.g.cs
 D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\obj\Debug\netcoreapp3.1\Razor\Views\Gebruiker\Delete.cshtml.g.cs
 D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\obj\Debug\netcoreapp3.1\Razor\Views\Gebruiker\Edit.cshtml.g.cs
+D:\Webapplicaties\NFTMarketplace_webapplicaties_opnieuw\NFTMarketplace_webapplicaties_opnieuw\obj\Debug\netcoreapp3.1\Razor\Views\Order\EmptyCart.cshtml.g.cs
