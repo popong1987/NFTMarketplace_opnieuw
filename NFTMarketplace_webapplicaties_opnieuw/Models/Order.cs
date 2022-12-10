@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NFTMarketplace_webapplicaties_opnieuw.Areas.Identity.Data;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace NFTMarketplace_webapplicaties_opnieuw.Models
@@ -11,11 +12,13 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Models
         public decimal TotalePrijs { get; set; }
 
 
-        public int GebruikerId { get; set; }
+        public string GebruikerId { get; set; }
+
+        public bool IsWinkelmandje { get; set; }
 
         //navigation properties
 
         public List<OrderProduct> OrderProducten { get; set; }
-        /*public Gebruiker Gebruiker { get; set; }*/
+        public Gebruiker Gebruiker { get; set; }
     }
 }
