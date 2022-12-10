@@ -1,5 +1,25 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model NFTMarketplace_webapplicaties_opnieuw.Viewmodels.OrderOverviewViewModel;
 @{
+    ViewData["Title"] = "Shopping Cart";
 }
+
+<h1 class="mt-5">@ViewData["Title"]</h1>
+
+
+<table class="table table-bordered table-striped">
+    
+    @foreach (var product in Model.OrderProducten)
+    {
+        <tr>
+            <td>@product.ProductId</td>
+            <td>@product.Product.Naam</td>
+            <td>@product.Product.Prijs</td>
+        </tr>
+    }
+</table>
+<form asp-controller="Order" asp-action="Pay">
+    <input type="hidden" asp-for="OrderId" />
+    <input type="submit" value="Pay" class="btn btn-primary" />
+</form>
+@*<a class="btn btn-primary" asp-controller="Order" asp-action="Pay">Pay</a>*@
+

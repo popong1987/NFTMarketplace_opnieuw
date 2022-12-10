@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using NFTMarketplace_webapplicaties_opnieuw.Models;
 using System;
+using System.Collections.Generic;
 
 namespace NFTMarketplace_webapplicaties_opnieuw.Areas.Identity.Data
 {
@@ -10,5 +12,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Areas.Identity.Data
 
         [PersonalData]
         public DateTime Geboortedatum { get; set; }
+
+        public ICollection<Order> Orders { get; set; }
     }
 }

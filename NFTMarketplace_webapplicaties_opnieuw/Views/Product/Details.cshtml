@@ -18,10 +18,11 @@
                 <p class="text-primary">€ @Model.Prijs</p>
             </div>
             <div class="col-md">
-                <form asp-controller="Order" asp-action="Index">
-                    <input type="hidden" asp-for="ProductId" />
+                <form asp-controller="Order" asp-action="CreateOrderProduct" >
+                    <input type="hidden" asp-for="ProductId"/>
                     <input type="submit" value="AddToCart" class="btn btn-primary" />
                 </form>
+                @*<a asp-controller="Order" asp-action="CreateOrderProduct" asp-route-id="@Model.ProductId">Add to cart</a>*@
 
             </div>
         </div>
@@ -48,3 +49,10 @@
     <div class="col-md m-5 align-content-center justify-content-center">
     </div>
 </div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NFTMarketplace_webapplicaties_opnieuw.Data;
 
 namespace NFTMarketplace_webapplicaties_opnieuw.Migrations
 {
     [DbContext(typeof(NFTMarketplaceContext))]
-    partial class NFTMarketplaceContextModelSnapshot : ModelSnapshot
+    [Migration("20221209115658_GebruikerToegevoegdBijOrder")]
+    partial class GebruikerToegevoegdBijOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -352,9 +354,6 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Migrations
 
                     b.Property<string>("GebruikerId")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsWinkelmandje")
-                        .HasColumnType("bit");
 
                     b.Property<decimal>("TotalePrijs")
                         .HasColumnType("decimal(18,2)");
