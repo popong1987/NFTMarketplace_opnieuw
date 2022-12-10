@@ -31,11 +31,14 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
             _context = context;
         }
 
-        public async Task<ViewResult> Index()
+        public async Task<ActionResult> Index()
         {
             Gebruiker gebruiker = await _userManager.GetUserAsync(HttpContext.User);
             Order order = await _context.Orders.Where(o => o.GebruikerId == gebruiker.Id && o.IsWinkelmandje == true).FirstOrDefaultAsync();
-            
+            if(order == null)
+            {
+                return RedirectToAction(nameof(EmptyCart));
+            }
             List<OrderProduct> orderProducten = await _uow.OrderProductRepository.GetAll()
                 .Include(op => op.Product)
                 .Where(o => o.OrderId == order.OrderId)
@@ -50,6 +53,12 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
                 };
                 return View(vm);
             }
+            
+            return RedirectToAction(nameof(EmptyCart));
+        }
+
+        public async Task<ActionResult> EmptyCart()
+        {
             return View();
         }
 
