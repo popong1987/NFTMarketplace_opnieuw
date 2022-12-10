@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NFTMarketplace_webapplicaties_opnieuw.Areas.Identity.Data;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class GebruikerController : Controller
     {
         private UserManager<Gebruiker> _userManager;
@@ -110,6 +112,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(GebruikerEditViewModel viewModel)
         {
             if (ModelState.IsValid)
