@@ -12,51 +12,56 @@
         <div asp-validation-summary="ModelOnly" class="text-danger" />
         <div class="col-md-6">
             <div class="form-group">
-                <label asp-for="Naam" class="control-label">@Html.DisplayNameFor(model => this.Model.Naam)</label>
+                <label asp-for="Naam" class="control-label text-primary">Name</label>
                 <input asp-for="Naam" class="form-control" />
                 <span asp-validation-for="Naam" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Prijs" class="control-label">@Html.DisplayNameFor(model => this.Model.Prijs)</label>
+                <label asp-for="Prijs" class="control-label text-primary">Price</label>
                 <input asp-for="Prijs" class="form-control" />
                 <span asp-validation-for="Prijs" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Afbeelding" class="control-label">@Html.DisplayNameFor(model => this.Model.Afbeelding)</label>
+                <label asp-for="Afbeelding" class="control-label text-primary">Image</label>
                 <input asp-for="Afbeelding" class="form-control" />
                 <span asp-validation-for="Afbeelding" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Beschrijving" class="control-label">@Html.DisplayNameFor(model => this.Model.Beschrijving)</label>
+                <label asp-for="Beschrijving" class="control-label text-primary">Description</label>
                 <input asp-for="Beschrijving" class="form-control" />
                 <span asp-validation-for="Beschrijving" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AanmaakDatum" class="control-label">@Html.DisplayNameFor(model => this.Model.AanmaakDatum)</label>
-                <input asp-for="AanmaakDatum" class="form-check" />
-                <span asp-validation-for="AanmaakDatum" class="text-danger"></span>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="submit" value="Edit" class="btn btn-primary btn-block" />
+                    </div>
+                    <div class="col-md-6">
+                        <a asp-action="Producten" class="btn btn-primary btn-block">Back</a>
+                    </div>
+                </div>
+
             </div>
+            
+            
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label asp-for="AantalBeschikbaar" class="control-label">@Html.DisplayNameFor(model => this.Model.AantalBeschikbaar)</label>
-                <input asp-for="AantalBeschikbaar" class="form-control" rows="5"></input>
+                <label asp-for="AanmaakDatum" class="control-label text-primary">Creation Date</label>
+                <input asp-for="AanmaakDatum" class="form-check" />
+                <span asp-validation-for="AanmaakDatum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AantalBeschikbaar" class="control-label text-primary"># Available</label>
+                <input asp-for="AantalBeschikbaar" class="form-control"/>
                 <span asp-validation-for="AantalBeschikbaar" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CollectieId" class="control-label">@Html.DisplayNameFor(model => this.Model.CollectieId)</label>
+                <label asp-for="CollectieId" class="control-label text-primary">Collection Id</label>
                 <input asp-for="CollectieId" class="form-control" />
                 <span asp-validation-for="CollectieId" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="Prijs" class="control-label">@Html.DisplayNameFor(model => this.Model.Prijs)</label>
-                <input asp-for="Prijs" class="form-control" />
-                <span asp-validation-for="Prijs" class="text-danger"></span>
-            </div>*@
-        </div>
-        <div class="form-group ml-2">
-            <input type="submit" value="Edit" class="btn btn-primary" />
-            <a asp-action="Producten" class="btn btn-primary">Back</a>
+           
         </div>
     </div>
 </form>

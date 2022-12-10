@@ -20,10 +20,8 @@
             <div class="col-md">
                 <form asp-controller="Order" asp-action="CreateOrderProduct" >
                     <input type="hidden" asp-for="ProductId"/>
-                    <input type="submit" value="AddToCart" class="btn btn-primary" />
+                    <input type="submit" value="Add To Cart" class="btn btn-primary" />
                 </form>
-                @*<a asp-controller="Order" asp-action="CreateOrderProduct" asp-route-id="@Model.ProductId">Add to cart</a>*@
-
             </div>
         </div>
     </div>
