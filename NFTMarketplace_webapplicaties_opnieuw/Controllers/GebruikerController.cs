@@ -86,9 +86,95 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
             }
             return View(vm);
         }
+        public IActionResult Edit(string id)
+        {
+            Gebruiker gebruiker = _userManager.Users.Where(k => k.Id == id).FirstOrDefault();
+
+
+            if (gebruiker != null)
+            {
+                GebruikerEditViewModel viewModel = new GebruikerEditViewModel()
+                {
+                    GebruikerId = gebruiker.Id,
+                    Naam = gebruiker.Naam,
+                    Email = gebruiker.UserName,
+                    Geboortedatum = gebruiker.Geboortedatum,
+
+                };
+                return View(viewModel);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
 
         [HttpPost]
+        public async Task<IActionResult> Edit(GebruikerEditViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Gebruiker gebruiker = await _userManager.FindByIdAsync(viewModel.GebruikerId);
 
+                gebruiker.Naam = viewModel.Naam;
+                gebruiker.Geboortedatum = viewModel.Geboortedatum;
+                gebruiker.Email = viewModel.Email;
+
+                IdentityResult result = await _userManager.UpdateAsync(gebruiker);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    foreach (IdentityError error in result.Errors)
+                        ModelState.AddModelError("", error.Description);
+                }
+            }
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            Gebruiker user = await _userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            GebruikerDeleteViewModel viewModel = new GebruikerDeleteViewModel()
+            {
+                GebruikerId = id,
+                Naam = user.Naam,
+                Geboortedatum = user.Geboortedatum,
+                Orders = user.Orders
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            Gebruiker user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                IdentityResult result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                    return RedirectToAction("Index");
+                else
+                    foreach (IdentityError error in result.Errors)
+                        ModelState.AddModelError("", error.Description);
+            }
+            else
+                ModelState.AddModelError("", "User Not Found");
+            return View("Index", _userManager.Users.ToList());
+        }
+
+        /*[HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
             Gebruiker gebruiker = await _userManager.FindByIdAsync(id);
@@ -113,7 +199,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
             }
             return View("Index", _userManager.Users.ToList());
         }
-
+*/
         public IActionResult GrantPermissions()
         {
             GrantPermissionsViewModel vm = new GrantPermissionsViewModel()
