@@ -3,9 +3,9 @@
     ViewData["Title"] = @Model.Naam;
 }
 
-<h1 class="mt-5">Bent u zeker dat u '@ViewData["Title"]' wil verwijderen?</h1>
+<h1 class="mt-5">Are you sure that you want to delete '@ViewData["Title"]'? <a asp-action="Producten" class="btn btn-outline-primary">Back</a></h1>
 
-<table class="table table-bordered table-striped mt-5">
+<table class="table table-dark text-primary mt-5">
     <tr>
         <td>@Html.DisplayNameFor(model => this.Model.ProductId)</td>
         <td>@this.Model.ProductId</td>
@@ -44,6 +44,6 @@
 <form class="mt-5" asp-action="DeleteProduct">
     <div class="form-group">
         <input type="submit" value="Delete" class="btn btn-primary" />
-        <a asp-action="Producten" class="btn btn-primary">Back</a>
+        
     </div>
 </form>

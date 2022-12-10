@@ -4,29 +4,49 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Gebruikers</h2>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<p>
-    <a asp-action="GrantPermissions">Change Roles</a>
-</p>
+<div class="row">
+    <div class="col-md-4">
+        <h1 class="text-primary mb-4">Users<a class="btn btn-outline-primary ml-4" asp-controller="Admin" asp-action="Index">Back</a></h1>
+    </div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4"></div>
+</div>
+<div class="row mb-4">
+    <div class="col-md-4">
+      <div class="row">
+          <div class="col-md">
+                <a class="btn btn-primary btn-block" asp-action="Create">Create New</a>
+          </div>
+          <div class="col-md">
+                <a class="btn btn-primary btn-block" asp-action="GrantPermissions">Change Roles</a>
+          </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4"></div>
+</div>
 
-<table>
+
+<table class="table table-dark text-primary mt-5">
     <thead>
         <tr>
-            <th class="col-md-4">
+            <th>
                 @Html.DisplayNameFor(g => g.Gebruikers[0].Id)
             </th>
-            <th class="col-md-2">
+            <th>
+                @Html.DisplayNameFor(g => g.Gebruikers[0].UserName)
+            </th>
+            <th>
                 @Html.DisplayNameFor(g => g.Gebruikers[0].Naam)
             </th>
-            <th class="col-md-2">
+            <th>
                 @Html.DisplayNameFor(g => g.Gebruikers[0].Geboortedatum)
             </th>
-            <th class="col-md-2">
-                &nbsp;
-            </th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -34,12 +54,17 @@
 
             <tr>
                 <td>@Html.DisplayFor(modelItem => gebruiker.Id)</td>
+                <td>@Html.DisplayFor(modelItem => gebruiker.UserName)</td>
                 <td>@Html.DisplayFor(modelItem => gebruiker.Naam)</td>
                 <td>@Html.DisplayFor(modelItem => gebruiker.Geboortedatum)</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@gebruiker.Id">Edit</a>
-                    <a asp-action="Details" asp-route-id="@gebruiker.Id">Details</a>
-                    <a asp-action="Delete" asp-route-id="@gebruiker.Id">Delete</a>
+                    <a class="button" asp-action="Edit" asp-route-id="@gebruiker.Id">Edit</a>
+                </td>
+                <td>
+                    <a class="button" asp-action="Details" asp-route-id="@gebruiker.Id">Details</a>
+                </td>
+                <td>
+                    <a class="button" asp-action="Delete" asp-route-id="@gebruiker.Id">Delete</a>
                 </td>
             </tr>
         }
