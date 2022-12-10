@@ -71,7 +71,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
             }
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public async Task<ActionResult> CreateOrderProduct(int id)
         {
 
@@ -108,7 +108,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
             await _uow.Save();
             return RedirectToAction(nameof(Index));
 
-        }
+        }*/
 
 
     }

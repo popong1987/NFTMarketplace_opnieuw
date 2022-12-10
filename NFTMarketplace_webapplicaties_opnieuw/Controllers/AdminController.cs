@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NFTMarketplace_webapplicaties_opnieuw.Data;
 using NFTMarketplace_webapplicaties_opnieuw.Data.UnitOfWork;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
 {
+    [Authorize(Roles ="admin")]
     public class AdminController : Controller
     {
         private readonly IUnitOfWork _uow;
@@ -47,6 +49,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateProduct(CreateProductViewModel vm)
         {
 
@@ -134,6 +137,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
 
         public async Task<IActionResult> EditProduct(int id, EditProductViewModel vm)
         {

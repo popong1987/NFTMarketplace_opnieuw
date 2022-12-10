@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ using System.Threading.Tasks;
 
 namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly IUnitOfWork _uow;
