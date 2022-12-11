@@ -15,12 +15,21 @@
         </div>
         <div class="row">
             <div class="col-md">
+                <p class="text-primary">@Model.AantalBeschikbaar available</p>
+            </div>
+            <div class="col-md">
                 <p class="text-primary">€ @Model.Prijs</p>
             </div>
             <div class="col-md">
                 <form asp-controller="Order" asp-action="CreateOrderProduct" >
                     <input type="hidden" asp-for="ProductId"/>
-                    <input type="submit" value="Add To Cart" class="btn btn-primary" />
+                    @{
+                        string Disabled = "";
+                        if(Model.AantalBeschikbaar == 0){
+                            Disabled = "disabled";
+                        }
+                    }
+                    <input type="submit" value="Add To Cart" class="btn btn-primary" @Disabled/>
                 </form>
             </div>
         </div>

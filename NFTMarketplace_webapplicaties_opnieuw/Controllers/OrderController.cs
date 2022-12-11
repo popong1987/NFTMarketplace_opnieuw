@@ -9,6 +9,7 @@ using NFTMarketplace_webapplicaties_opnieuw.Data;
 using NFTMarketplace_webapplicaties_opnieuw.Data.UnitOfWork;
 using NFTMarketplace_webapplicaties_opnieuw.Models;
 using NFTMarketplace_webapplicaties_opnieuw.Viewmodels;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
         {
             Gebruiker gebruiker = await _userManager.GetUserAsync(HttpContext.User);
             Order order = await _context.Orders.Where(o => o.GebruikerId == gebruiker.Id && o.IsWinkelmandje == true).FirstOrDefaultAsync();
+            
             if(order == null)
             {
                 return RedirectToAction(nameof(EmptyCart));
@@ -46,10 +48,19 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
 
             if(orderProducten != null)
             {
+                decimal totalePrijs = 0;
+                foreach (var product in orderProducten)
+                {
+                    totalePrijs += product.Prijs;
+                }
                 OrderOverviewViewModel vm = new OrderOverviewViewModel()
                 {
+                    
                     OrderId = order.OrderId,
-                    OrderProducten = orderProducten
+                    OrderProducten = orderProducten,
+                    TotalePrijs = totalePrijs
+                   
+
                 };
                 return View(vm);
             }
@@ -61,6 +72,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
         {
             return View();
         }
+
 
         [HttpPost]
         public async Task<ActionResult> CreateOrderProduct(ProductDetailsViewModel vm)
@@ -95,6 +107,9 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
                 ProductId = product.ProductId,
                 OrderId = order.OrderId
             });
+
+            product.AantalBeschikbaar -= 1;
+            _uow.ProductRepository.Update(product);
             await _uow.Save();
             return RedirectToAction(nameof(Index));
 
