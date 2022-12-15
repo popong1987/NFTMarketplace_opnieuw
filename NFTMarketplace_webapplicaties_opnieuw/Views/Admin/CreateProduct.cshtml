@@ -7,13 +7,21 @@
     <div class="mt-5">
         <h1 class="text-primary mb-4">Create New NFT<a class="btn btn-outline-primary ml-4" asp-controller="Admin" asp-action="Index">Back</a></h1>
     </div>
-    <form asp-action="CreateProduct">
+    <form asp-action="CreateProduct" enctype="multipart/form-data">
         <div class="row">
             <div class="col d-flex align-items-center justify-content-center">
                 <div class="form-group">
-                    <label class="text-primary">Image</label>
+                    <div class="row">
+                        <div class="col-md">
+                            Select Image:
+                        </div>
+                        <div class="col-md">
+                            <input type="file" name="postedFiles" class="form-control" asp-for="PostedFiles"/>
+                        </div>
+                    </div>
+                    @*<label class="text-primary">Image</label>
                     <input asp-for="Afbeelding" class="form-control" />
-                    <span asp-validation-for="Afbeelding" class="text-danger"></span>
+                    <span asp-validation-for="Afbeelding" class="text-danger"></span>*@
                 </div>
             </div>
             <div class="col">

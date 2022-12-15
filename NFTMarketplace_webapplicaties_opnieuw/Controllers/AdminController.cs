@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NFTMarketplace_webapplicaties_opnieuw.Data;
@@ -7,6 +9,7 @@ using NFTMarketplace_webapplicaties_opnieuw.Models;
 using NFTMarketplace_webapplicaties_opnieuw.Viewmodels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
@@ -16,10 +19,12 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
     public class AdminController : Controller
     {
         private readonly IUnitOfWork _uow;
+        private IWebHostEnvironment _environment;
 
-        public AdminController(IUnitOfWork uow)
+        public AdminController(IUnitOfWork uow, IWebHostEnvironment enviroment)
         {
            _uow = uow;
+            _environment = enviroment;
         }
 
         public async Task<ActionResult<IEnumerable<Product>>> Index()
@@ -55,11 +60,30 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
 
             if (ModelState.IsValid)
             {
+                string sUserName = User.Identity.Name;
+
+                string path = Path.Combine(this._environment.WebRootPath, "UploadFiles", sUserName);
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+                foreach(IFormFile postedFile in vm.PostedFiles)
+                {
+                    string fileName = Path.GetFileName(postedFile.FileName);
+
+                    using(var stream = new FileStream(Path.Combine(path, fileName), FileMode.Create))
+                    {
+                        stream.Position = 0;
+                        await postedFile.CopyToAsync(stream);
+                    }
+                }
+
                 _uow.ProductRepository.Create(new Product()
                 {
                     Naam = vm.Naam,
                     Prijs = vm.Prijs,
-                    Afbeelding = vm.Afbeelding,
+                    Afbeelding = path,
                     Beschrijving = vm.Beschrijving,
                     AanmaakDatum = vm.AanmaakDatum,
                     AantalBeschikbaar = vm.AantalBeschikbaar,
