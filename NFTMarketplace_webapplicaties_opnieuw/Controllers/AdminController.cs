@@ -57,12 +57,14 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CreateProduct(CreateProductViewModel vm)
         {
+            Collectie collectie = await _uow.CollectieRepository.GetById(vm.CollectieId);
 
             if (ModelState.IsValid)
             {
                 string sUserName = User.Identity.Name;
+                string afbeelding = "";
 
-                string path = Path.Combine(this._environment.WebRootPath, "UploadFiles", sUserName);
+                string path = Path.Combine(this._environment.WebRootPath, "images", collectie.Naam);
                 if (!Directory.Exists(path))
                 {
                     Directory.CreateDirectory(path);
@@ -77,19 +79,18 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
                         stream.Position = 0;
                         await postedFile.CopyToAsync(stream);
                     }
+                    afbeelding = fileName;
                 }
 
                 _uow.ProductRepository.Create(new Product()
                 {
                     Naam = vm.Naam,
                     Prijs = vm.Prijs,
-                    Afbeelding = path,
+                    Afbeelding = "/images/" + collectie.Naam +"/" + afbeelding,
                     Beschrijving = vm.Beschrijving,
                     AanmaakDatum = vm.AanmaakDatum,
                     AantalBeschikbaar = vm.AantalBeschikbaar,
                     CollectieId = vm.CollectieId,
-
-
                 });
                 await _uow.Save();
                 return RedirectToAction(nameof(Producten));
