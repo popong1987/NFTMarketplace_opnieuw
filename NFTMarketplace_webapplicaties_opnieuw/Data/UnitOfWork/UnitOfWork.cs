@@ -12,11 +12,50 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Data.UnitOfWork
         private IGenericRepository<Collectie> _collectieRepository;
         private IGenericRepository<Order> _orderRepository;
         private IGenericRepository<OrderProduct> _orderProductRepository;
+        private IOrderRepository _specificOrderRepository;
+        private IProductPropertiesRepository _specificProductPropertiesRepository;
+        private IProductRepository _specificProductRepository;
 
         public UnitOfWork(NFTMarketplaceContext context)
         {
             _context = context;
 
+        }
+
+        public IOrderRepository SpecificOrderRepository
+        {
+            get
+            {
+                if (this._specificOrderRepository == null)
+                {
+                    this._specificOrderRepository = new OrderRepository(_context);
+                }
+                return _specificOrderRepository;
+            }
+        }
+
+        public IProductPropertiesRepository SpecificProductPropertiesRepository
+        {
+            get
+            {
+                if (this._specificProductPropertiesRepository == null)
+                {
+                    this._specificProductPropertiesRepository = new ProductPropertiesRepository(_context);
+                }
+                return _specificProductPropertiesRepository;
+            }
+        }
+
+        public IProductRepository SpecificProductRepository
+        {
+            get
+            {
+                if (this._specificProductRepository == null)
+                {
+                    this._specificProductRepository = new ProductRepository(_context);
+                }
+                return _specificProductRepository;
+            }
         }
 
         public IGenericRepository<Product> ProductRepository

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace NFTMarketplace_webapplicaties_opnieuw.Data.Repositories
@@ -36,6 +38,11 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Data.Repositories
         public void Update(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);
+        }
+
+        public bool Any(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _context.Set<TEntity>().Any(predicate);
         }
     }
 }

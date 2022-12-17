@@ -11,6 +11,9 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Data.UnitOfWork
         IGenericRepository<Collectie> CollectieRepository { get; }
         IGenericRepository<Order> OrderRepository { get; }
         IGenericRepository<OrderProduct> OrderProductRepository { get; }
+        IOrderRepository SpecificOrderRepository { get; }
+        IProductPropertiesRepository SpecificProductPropertiesRepository { get; }
+        IProductRepository SpecificProductRepository { get; }
         Task Save();
     }
 }

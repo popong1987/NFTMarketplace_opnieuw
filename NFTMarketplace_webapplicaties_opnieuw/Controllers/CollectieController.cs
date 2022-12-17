@@ -30,10 +30,12 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
         public async Task<ActionResult<IEnumerable<Collectie>>> Details(int id)
         {
             var collectie = await _uow.CollectieRepository.GetById(id);
-            List<Product> producten = await _uow.ProductRepository.GetAll()
+            /*List<Product> producten = await _uow.ProductRepository.GetAll()
                 .Where(p => p.CollectieId == id)
-                .ToListAsync();
+                .ToListAsync();*/
 
+            List<Product> producten = _uow.SpecificProductRepository.GetProductsForSpecificCollection(collectie);
+ 
             if (collectie != null)
             {
                 CollectieDetailsViewModel vm = new CollectieDetailsViewModel()
