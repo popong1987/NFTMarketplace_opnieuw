@@ -190,8 +190,14 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
                 }
                 catch(DbUpdateConcurrencyException e)
                 {
-                    /*if(!_uow.ProductRepository.*/
-                    throw;
+                    if(!_uow.ProductRepository.Any(p => p.ProductId == vm.ProductId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
                 return RedirectToAction(nameof(Producten));
             }

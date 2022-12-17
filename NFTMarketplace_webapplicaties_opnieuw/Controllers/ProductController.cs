@@ -15,14 +15,11 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _uow;
-        private readonly NFTMarketplaceContext _context;
-        private readonly UserManager<Gebruiker> _userManager;
 
-        public ProductController(IUnitOfWork uow, NFTMarketplaceContext context, UserManager<Gebruiker> userManager)
+
+        public ProductController(IUnitOfWork uow)
         {
             _uow = uow;
-            _context = context;
-            _userManager = userManager;
         }
 
         public async Task<ActionResult<IEnumerable<Product>>> Index()
@@ -38,10 +35,12 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
         {
             var product = await _uow.ProductRepository.GetById(id);
 
-            List<ProductProperty> productProperties = await _uow.ProductPropertyRepository.GetAll()
-                .Include(p => p.Property)
-                .Where(pp => pp.ProductId == id)
-                .ToListAsync();
+            /*            List<ProductProperty> productProperties = await _uow.ProductPropertyRepository.GetAll()
+                            .Include(p => p.Property)
+                            .Where(pp => pp.ProductId == id)
+                            .ToListAsync();*/
+
+            List<ProductProperty> productProperties =  _uow.SpecificProductPropertiesRepository.GetPropertiesForSpecificProduct(product);
 
 
             if (product != null)
@@ -70,46 +69,6 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
                 return View("Index", v);
             }
         }
-
-        /*[HttpGet]
-        public async Task<ActionResult> CreateOrderProduct(int id)
-        {
-
-           
-
-            Gebruiker gebruiker = await _userManager.GetUserAsync(HttpContext.User);
-            Order order = await _context.Orders.Where(o => o.GebruikerId == gebruiker.Id && o.IsWinkelmandje == true).FirstOrDefaultAsync();
-            Product product = await _uow.ProductRepository.GetById(id);
-
-            string gebruikerId = gebruiker.Id;
-
-            if (order == null)
-            {
-                order = new Order()
-                {
-
-                    TotalePrijs = product.Prijs,
-                    GebruikerId = gebruiker.Id,
-                    IsWinkelmandje = true
-                };
-                _uow.OrderRepository.Create(order);
-                await _uow.Save();
-            }
-
-
-
-            _uow.OrderProductRepository.Create(new OrderProduct()
-            {
-                Aantal = 1,
-                Prijs = product.Prijs,
-                ProductId = product.ProductId,
-                OrderId = order.OrderId
-            });
-            await _uow.Save();
-            return RedirectToAction(nameof(Index));
-
-        }*/
-
 
     }
 }

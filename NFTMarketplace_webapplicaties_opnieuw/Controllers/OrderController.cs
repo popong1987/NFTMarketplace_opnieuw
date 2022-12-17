@@ -35,7 +35,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
         public async Task<ActionResult> Index()
         {
             Gebruiker gebruiker = await _userManager.GetUserAsync(HttpContext.User);
-            Order order = await _context.Orders.Where(o => o.GebruikerId == gebruiker.Id && o.IsWinkelmandje == true).FirstOrDefaultAsync();
+            Order order = _uow.SpecificOrderRepository.findSpecificOrder(gebruiker);
             
             if(order == null)
             {
@@ -79,7 +79,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
         {
            
             Gebruiker gebruiker = await _userManager.GetUserAsync(HttpContext.User);
-            Order order = await _context.Orders.Where(o => o.GebruikerId == gebruiker.Id && o.IsWinkelmandje == true).FirstOrDefaultAsync();
+            Order order = _uow.SpecificOrderRepository.findSpecificOrder(gebruiker);
             Product product = await _uow.ProductRepository.GetById(vm.ProductId);
 
             string gebruikerId = gebruiker.Id;
@@ -132,7 +132,15 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
                 }
                 catch(DbUpdateConcurrencyException e)
                 {
-                    throw;
+                    if(! _uow.OrderRepository.Any(o => o.OrderId == vm.OrderId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                    
                 }
                 return RedirectToAction("Index", "Home");
             }
