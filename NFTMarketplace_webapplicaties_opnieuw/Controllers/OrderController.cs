@@ -134,7 +134,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
                 {
                     throw;
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             return View(vm);
         }

@@ -5,23 +5,54 @@
 
 <h1 class="mt-5">@ViewData["Title"]</h1>
 
+<div class="row mt-5">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <table class="table table-dark text-primary">
+            <tr>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
 
-<table class="table table-dark text-primary">
-    
-    @foreach (var product in Model.OrderProducten)
-    {
-        <tr>
-            <td>@product.ProductId</td>
-            <td>@product.Product.Naam</td>
-            <td>@product.Product.Prijs</td>
-        </tr>
-    }
-</table>
+            @foreach (var product in Model.OrderProducten)
+            {
+                <tr>
+                    <td><img src="@product.Product.Afbeelding" class="shoppingCartImg" height="100px" width="auto" /></td>
+                    <td>@product.Product.Naam</td>
+                    <td>@product.Aantal</td>
+                    <td>@product.Product.Prijs USD</td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6 align-content-end">
+                <h2 class="text-primary">Total price: @Model.TotalePrijs USD</h2>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <form asp-controller="Order" asp-action="Pay">
+                    <input type="hidden" asp-for="OrderId" />
+                    <input type="submit" value="Pay" class="btn btn-primary btn-block" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
 
-<h2>@Model.TotalePrijs</h2>
-<form asp-controller="Order" asp-action="Pay">
-    <input type="hidden" asp-for="OrderId" />
-    <input type="submit" value="Pay" class="btn btn-primary" />
-</form>
+
+
+
 
 

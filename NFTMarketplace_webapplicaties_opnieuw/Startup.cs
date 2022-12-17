@@ -31,7 +31,7 @@ namespace NFTMarketplace_webapplicaties_opnieuw
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<NFTMarketplaceContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalDBConnection")));
+            services.AddDbContext<NFTMarketplaceContext>(options => options.UseSqlServer(Configuration.GetConnectionString("NFTMarketplaceConnection")));
             services.AddDefaultIdentity<Gebruiker>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<NFTMarketplaceContext>();
