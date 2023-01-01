@@ -1,0 +1,79 @@
+﻿.text-primary {
+    color: #B37BFC !important;
+}
+
+.bg-dark {
+    background-color: black !important;
+}
+
+.bg-primary {
+    background-color: #B37BFC !important;
+}
+
+.border-primary {
+    border-color: #B37BFC !important;
+}
+
+.btn-outline-primary {
+    border-color: #B37BFC !important;
+    color: #B37BFC !important;
+}
+
+.btn-outline-primary:hover {
+     border-color: #B37BFC !important;
+     color: white !important;
+     background-color: #B37BFC !important;
+}
+
+.btn-primary {
+    background-color: #B37BFC !important;
+    border-color: #B37BFC !important;
+}
+
+input.bg-primary {
+    color: white !important;
+}
+
+.form-control::placeholder {
+    color: white !important;
+    opacity: 1 !important;
+}
+
+.carousel .carousel-item {
+    height: 60vh;
+}
+
+.carousel-item img {
+    position: center;
+    object-fit: none;
+    top: 0;
+    left: 0;
+    min-height: 60vh;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #B37BFC !important;
+}
+
+.navbar-nav .nav-item.active .nav-link,
+.navbar-nav .nav-item:hover .nav-link {
+    color: #B37BFC !important;
+}
+
+table.table-dark {
+    background-color: black !important;
+}
+
+h1 {
+    color: #B37BFC !important;
+}
+
+a.button {
+    color: #B37BFC !important;
+}
+
+a.button:hover{
+    color: cyan !important;
+    text-decoration: none;
+}
+
