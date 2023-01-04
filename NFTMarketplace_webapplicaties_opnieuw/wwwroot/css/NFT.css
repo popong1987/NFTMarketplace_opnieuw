@@ -77,3 +77,11 @@ a.button:hover{
     text-decoration: none;
 }
 
+a.nav-link {
+    color: #B37BFC !important;
+}
+
+a.nav-link:active {
+        color: white !important;
+        background-color: #B37BFC !important;
+    }
