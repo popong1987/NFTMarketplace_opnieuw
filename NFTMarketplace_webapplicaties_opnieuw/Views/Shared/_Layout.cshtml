@@ -14,7 +14,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark  mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand text-primary ml-3" asp-controller="Home" asp-action="Index"><img src="~/images/NFTLOGO.png" height="75px"/></a>
+                <a class="navbar-brand text-primary m-3" asp-controller="Home" asp-action="Index"><img src="~/images/NFTLOGO.png" height="75px"/></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -26,6 +26,9 @@
 
                         <li class="nav-item">
                             <a class="nav-link text-primary" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary" asp-controller="Home" asp-action="About">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-primary" asp-controller="Collectie" asp-action="Index">Collections</a>
@@ -48,12 +51,6 @@
                     </ul>
 
                 </div>
-                <form class="d-flex">
-                    <input class="form-control bg-primary me-2 border-primary" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-primary ml-2 " type="submit">Search</button>
-                </form>
-
-
             </div>
         </nav>
     </header>

@@ -17,6 +17,10 @@ namespace NFTMarketplace_webapplicaties_opnieuw.Controllers
             _uow = uow;
         }
 
+        public IActionResult About()
+        {
+            return View();
+        }
         public async Task<ActionResult<IEnumerable<Collectie>>> Index()
         {
             CollectieListViewModel vm = new CollectieListViewModel()
